@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Gülşən Məmmədova - SMM & Reelsmaker Portfolio</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --text-color: #ffffff;
+            --card-bg: rgba(22, 22, 22, 0.6);
+            --primary-gradient: linear-gradient(135deg, #b5179e, #7209b7, #4895ef, #4cc9f0);
+            --mesh-bg: radial-gradient(at 100% 0%, #ff007f 0px, transparent 50%), radial-gradient(at 0% 100%, #7209b7 0px, transparent 50%), radial-gradient(at 80% 50%, #b5179e 0px, transparent 40%), radial-gradient(at 40% 100%, #000000 0px, transparent 70%);
+            --neon-glow: 0 0 25px rgba(181, 23, 158, 0.5);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #fcfaf2;
+            --text-color: #111111;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --mesh-bg: none;
+            --neon-glow: 0 5px 15px rgba(114, 9, 183, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            transition: background 0.3s, color 0.3s;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: var(--mesh-bg);
+            background-attachment: fixed;
+            background-size: cover;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff007f, #b5179e, #7209b7, #4cc9f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            background: rgba(11, 11, 11, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] header {
+            background: rgba(252, 250, 242, 0.4);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-gradient);
+            transition: 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--neon-glow);
+            border: 1px solid rgba(255, 255, 255, 0.1)
+        }
+
+        section {
+            padding: 140px 8% 80px 8%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            box-shadow: var(--neon-glow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(255, 0, 127, 0.7);
+        }
+
+        .works-list {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .work-row {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(181, 23, 158, 0.25);
+            box-shadow: var(--neon-glow);
+            overflow: hidden;
+            gap: 60px;
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        [data-theme="light"] .work-row {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .work-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .video-side {
+            flex: 1;
+            min-width: 380px;
+            max-width: 420px;
+            height: 650px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(181, 23, 158, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-side video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .text-side {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .text-side h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        body:not([data-theme="light"]) .text-side h3 {
+            color: #fff;
+        }
+
+        .text-side p {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(181, 23, 158, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(181, 23, 158, 0.3);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #ff007f;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+        }
+
+        [data-theme="light"] .form-group input,
+        [data-theme="light"] .form-group textarea {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(114, 9, 183, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: var(--neon-glow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 420px;
+            height: 80vh;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 45px rgba(255, 0, 127, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 100000;
+        }
+
+        .modal-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100001;
+            box-shadow: var(--neon-glow);
+        }
+
+        @media(max-width:968px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 100px 5% 60px 5%;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text h1 {
+                font-size: 32px;
+            }
+
+            .about-text p {
+                font-size: 16px;
+            }
+
+            .work-row,
+            .work-row.reverse {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding: 30px;
+            }
+
+            .video-side {
+                min-width: 100%;
+                max-width: 100%;
+                height: 580px;
+            }
+
+            .text-side {
+                text-align: center;
+                padding: 10px;
+            }
+
+            .text-side h3 {
+                font-size: 28px;
+            }
+        }
+
+        footer {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 15px 8%;
+            border-top: 1px solid rgba(181, 23, 158, 0.25);
+            box-shadow: var(--neon-glow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .footer-contacts {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-contacts a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-contacts a:hover {
+            color: #4cc9f0;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-socials a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background: var(--primary-gradient);
+            transition: 0.3s;
+        }
+
+        .footer-socials a:hover::after {
+            width: 100%;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            opacity: 0.6;
+            font-weight: 400;
+            text-align: center;
+            width: 100%;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .footer-text {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width:768px) {
+            footer {
+                padding: 15px 5%;
+                margin-top: 20px;
+            }
+
+            .footer-contacts {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><span class="gradient-text">Gülşən Məmmədova</span></div>
+        <nav>
+            <a href="#haqqinda">Haqqında</a>
+            <a href="#isler">İşlər</a>
+            <a href="#elaqe">Əlaqə</a>
+            <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀️</button>
+        </nav>
+    </header>
+    <section id="haqqinda">
+        <div class="about-content">
+            <div class="about-text">
+                <h1>Mən <span class="gradient-text">Gülşən Məmmədova</span>.<br>Sosial Medianızı Zirvəyə Daşıyan SMM &
+                    Reelsmaker.</h1>
+                <p>Trendləri izləyərək yox, onları yaradaraq markanızı ön plana çıxarıram. Yüksək izlənmə və kreativ
+                    montaj həlləri üçün doğru yerdəsiniz.</p>
+                <a href="#isler" class="cta-btn">Kreativ İşlərimə Bax</a>
+            </div>
+        </div>
+    </section>
+   <section id="isler">
+<h2 class="section-title">Son <span class="gradient-text">İşlər</span></h2>
+<div class="works-list">
+<div class="work-row">
+<div class="video-side">
+<video autoplay loop muted playsinline preload="auto"><source src="./coffeeteam1.mp4" type="video/mp4"></video>
+</div>
+<div class="text-side">
+<h3>Kreativ Reels Kampaniyası</h3>
+<p>Müştəri üçün xüsusi olaraq hazırlanan, yüksək dinamika və səs effektləri ilə zənginləşdirilmiş layihə. Bu kontent qısa müddətdə hədəf kütlənin diqqətini çəkərək 1 Milyondan çox üzvi baxış sayı əldə etmişdir.</p>
+</div>
+</div>
+<div class="work-row reverse">
+<div class="video-side">
+<video autoplay loop muted playsinline preload="auto"><source src="./coffeeteam2.mp4" type="video/mp4"></video>
+</div>
+<div class="text-side">
+<h3>Brend SMM Strategiyası</h3>
+<p>Markanın vizual kimliyinə tam uyğun gələn, rəng harmoniyası və sloqanlarla gücləndirilmiş Reels kontenti. Sosial mediada izləyici aktivliyini artırmaq və brend imicini möhkəmlətmək üçün yaradılmışdır.</p>
+</div>
+</div>
+<div class="work-row">
+<div class="video-side">
+<video autoplay loop muted playsinline preload="auto"><source src="./coffeeteam3.mp4" type="video/mp4"></video>
+</div>
+<div class="text-side">
+<h3>Dinamik Keçidli Montaj</h3>
+<p>Trend musiqilərlə, axıcı rəng tonları (color grading) və müasir keçid effektləri istifadə edilərək hazırlanan peşəkar Reels videosu. İzləyicini ilk saniyədən videoda saxlamaq üçün vizual ritm əsas götürülüb.</p>
+</div>
+</div>
+</div>
+</section>
+
+    <section id="elaqe">
+        <h2 class="section-title">Mənimlə <span class="gradient-text">Əlaqə</span></h2>
+        <div class="contact-container">
+            <form onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label for="name">Adınız / Şirkət Adı</label>
+                    <input type="text" id="name" required placeholder="Adınızı daxil edin">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Əlaqə Nömrəniz</label>
+                    <input type="tel" id="phone" required placeholder="Nömrənizi daxil edin (məs: 050XXXXXXX)">
+                </div>
+                <div class="form-group">
+                    <label for="msg">Mesajınız (Yaz bölməsi)</label>
+                    <textarea id="msg" rows="5" required
+                        placeholder="Layihəniz, Reels istəkləriniz və ya SMM xidmətləri barədə bura yazın..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">E-poçt ilə Göndər</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-contacts"><a href="mailto:gulshanfmammadova@gmail.com">📩 gulshanfmammadova@gmail.com</a><a
+                href="tel:+994557677613">📞 +994 55 767 76 13</a></div>
+        <div class="footer-text">&copy; 2026 Gülşən Məmmədova. Bütün hüquqlar qorunur.</div>
+    </footer>
+    <div class="video-modal" id="videoModal">
+        <button class="close-modal" onclick="closeVideo()">✕</button>
+        <div class="modal-content">
+            <video id="modalVideo" controls></video>
+        </div>
+
+    </div>
+
+  <script>
+    function toggleTheme(){const currentTheme=document.documentElement.getAttribute('data-theme');const btn=document.getElementById('themeBtn');if(currentTheme==='light'){document.documentElement.removeAttribute('data-theme');btn.innerHTML='☀️';}else{document.documentElement.setAttribute('data-theme','light');btn.innerHTML='🌙';}}
+function enableSound(element){const video=element.querySelector('video');if(video){video.muted=false;video.play().catch(function(e){console.log('Səs aktiv edilərkən autoplay maneəsi:',e);});}}
+function toggleTheme(){const currentTheme=document.documentElement.getAttribute('data-theme');const btn=document.getElementById('themeBtn');if(currentTheme==='light'){document.documentElement.removeAttribute('data-theme');btn.innerHTML='☀️';}else{document.documentElement.setAttribute('data-theme','light');btn.innerHTML='🌙';}}
+document.addEventListener("DOMContentLoaded",function(){const videos=document.querySelectorAll(".video-side video");const observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){const video=entry.target;if(entry.isIntersecting){video.muted=false;video.play().catch(function(e){console.log("Autoplay click required:",e);video.muted=true;video.play();});}else{video.muted=true;}});},{threshold:0.6});videos.forEach(function(video){observer.observe(video);});});
+function disableSound(element){const video=element.querySelector('video');if(video){video.muted=true;}}
+function sendEmail(event){event.preventDefault();const myEmail="gulshanfmammadova@gmail.com";const name=document.getElementById('name').value;const phone=document.getElementById('phone').value;const msg=document.getElementById('msg').value;const subject=encodeURIComponent("New Portfolio Message from "+name);const body=encodeURIComponent("Salam Gülşən xanım,\n\nPortfolio saytınızdan yeni mesaj var:\n\n👤 Ad: "+name+"\n📞 Telefon: "+phone+"\n💬 Mesaj: "+msg);window.location.href="mailto:"+myEmail+"?subject="+subject+"&body="+body;}
+
+  </script>
